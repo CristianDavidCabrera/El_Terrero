@@ -1,8 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Usuario no registrado</h1>
-    <p>Rederigido a la Home</p>
+   <header>
+        <nav>
+            <a href="#leyendas">Leyendas</a>
+            <a href="#promesas">Promesas</a>
+            <a href="#equipos">Equipos</a>
+            <a href="#marcador">Marcador</a>
+            <a href="#calendario">Calendario</a>
+            <a href="#clasificacion">Clasificación</a>
+        </nav>
+        <button class="login-button">Login</button>
+    </header>
+
+    <main class="main-content">
+        <!-- Sección de Equipos -->
+        <section class="teams" id="equipos">
+            <h2>Equipos</h2>
+            <p>Información sobre los equipos participantes.</p>
+            <p>Mapa de las islas canarias con la ubicación de los equipos participantes.</p>
+        </section>
+
+        <!-- Sección de Marcadores -->
+        <section class="scores" id="marcador">
+            <h2>Marcadores</h2>
+            <p>Marcadores actualizados de las competiciones.</p>
+        </section>
+
+        <!-- Sección de Clasificación -->
+        <section class="classification" id="clasificacion">
+            <h2>Clasificación</h2>
+            <p>Clasificación actual de los equipos. Con los grupos A y B.</p>
+        </section>
+
+
+        <!-- Logos de patrocinadores federaciones insulares y regional-->
+        
+        <section class="sponsors">
+            <h2> Enlaces a las federaciones</h2>
+            <img src="sponsor1.png" alt="Patrocinador 1">
+            <img src="sponsor2.png" alt="Patrocinador 2">
+            <img src="sponsor3.png" alt="Patrocinador 3">
+            <img src="sponsor4.png" alt="Patrocinador 4">
+            <img src="sponsor5.png" alt="Patrocinador 5">
+            <img src="sponsor6.png" alt="Patrocinador 6">
+       
+        </section>
+
+     <!-- Tarjetas principales -->
+        <section class="cards">
+            <div class="card" id="calendario">
+                <h2>Calendario</h2>
+                <p>Consulta las próximas competiciones y eventos.</p>
+            </div>
+            <div class="card" id="leyendas">
+                <h2>Leyendas</h2>
+                <p>Descubre la historia y los grandes íconos de la lucha canaria.</p>
+            </div>
+            <div class="card" id="promesas">
+                <h2>Promesas</h2>
+                <p>Conoce a las jóvenes promesas del deporte.</p>
+            </div>
+        </section>
+        
+        <!-- Logos de patrocinadores cabildos y gobierno de canarias -->
+        <div>  <h2>Logos a los cabildos y patrocinadores oficiales</h2> <div>
+        <section class="sponsors">
+
+            <img src="sponsor7.png" alt="Patrocinador 7">
+            <img src="sponsor8.png" alt="Patrocinador 8">
+            <img src="sponsor9.png" alt="Patrocinador 9">
+            <img src="sponsor10.png" alt="Patrocinador 10">
+            <img src="sponsor11.png" alt="Patrocinador 11">
+            <img src="sponsor12.png" alt="Patrocinador 12">
+            <img src="sponsor13.png" alt="Patrocinador 13">
+            <img src="sponsorN.png" alt="Patrocinador n">
+        </section>
+    </main>
+
+    <footer>
+        <a href="#leyendas">Leyendas</a> |
+        <a href="#promesas">Promesas</a> |
+        <a href="#equipos">Equipos</a> |
+        <a href="#marcador">Marcador</a> |
+        <a href="#calendario">Calendario</a> |
+        <a href="#clasificacion">Clasificación</a>
+    </footer>
+
 {% endblock %}
