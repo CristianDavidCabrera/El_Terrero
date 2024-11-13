@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard User{% endblock %}
+
+{% block body %}
+   <header>
+        <nav>
+            <a href="#equipos">Equipo</a>
+            <a href="#marcador">Plantilla</a>
+            <a href="#calendario">Luchador</a>
+            <a href="#clasificacion">Marcador</a>
+        </nav>
+        <button class="login-button" onclick="window.location.href='{{ path('home') }}'" >Logout</button>
+    </header>
+    <main> 
+        <h1> DASHBOARD DEl USUARIO</h1>
+    </main>
+
+{% endblock %}

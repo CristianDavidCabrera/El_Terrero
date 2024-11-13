@@ -19,4 +19,9 @@ class HomeController extends AbstractController
     public function success () {
        return $this->render('home.html.twig');
     }
+
+    #[Route('/dashboar_user', name: 'dashboard_user')]
+    public function dashboarUser () {
+       return $this->render('dashboardUser.html.twig');
+    }
 }
