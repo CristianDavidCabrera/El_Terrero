@@ -5,11 +5,7 @@
 {% block body %}
    <header>
         <nav>
-<a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a>
-
-{# <a href="#equipos" onclick="window.location.href='{{ path('app_club_showYourClub', { id: user.club.id }) }}'">Club</a> #}
-
-
+            <a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a>
             <a href="#marcador">Plantilla</a>
             <a href="#calendario">Luchador</a>
             <a href="#clasificacion">Marcador</a>
@@ -17,10 +13,7 @@
         <button class="login-button" onclick="window.location.href='{{ path('home') }}'" >Logout</button>
     </header>
     <main> 
-        <h1> DASHBOARD DEl USUARIO</h1>
-        <h2> {{user.email}}  </h2>
-         {#   <h2> {{user.club.id}}  </h2>
-            <h2> {{user.club.name}}  </h2> #}
+        <h1> DASHBOARD DEl ADMIN</h1>
     </main>
 
 {% endblock %}
