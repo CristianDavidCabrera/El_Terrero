@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Club;
 
 #[Route('/team')]
 class TeamController extends AbstractController
@@ -26,7 +27,11 @@ class TeamController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $team = new Team();
-        $form = $this->createForm(TeamType::class, $team);
+        $club = $this->isGranted('ROLE_ADMIN') ? $entityManager->getRepository(Club::class)->findAll() :  $this->getUser()->getClub();
+        $form = $this->createForm(TeamType::class, $team, [
+            'user_club' => $club
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +58,10 @@ class TeamController extends AbstractController
     #[Route('/{id}/edit', name: 'app_team_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TeamType::class, $team);
+
+        $form = $this->createForm(TeamType::class, $team, [
+            'user_club'=> $entityManager->getRepository(Club::class)->find($team->getIdClub())  
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
