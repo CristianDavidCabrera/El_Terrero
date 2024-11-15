@@ -5,13 +5,13 @@
 {% block body %}
    <header>
         <nav>
-            <a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Clubes</a>
-            <a href="#marcador">Plantillas</a>
-            <a href="#calendario">Luchadores</a>
-            <a href="#clasificacion">Marcadores</a>
-            <a href="#clasificacion">Usuarios</a>
+            <a href="{{ path('app_club_index') }}">Clubes</a>
+            <a href="#">Equipos</a>
+            <a href="#">Luchadores</a>
+            <a href="#">Marcadores</a>
+            <a href="#">Usuarios</a>
         </nav>
-        <button class="login-button" onclick="window.location.href='{{ path('home') }}'" >Logout</button>
+        <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Logout</button>
     </header>
     <main> 
         <h1> DASHBOARD DEl ADMIN</h1>

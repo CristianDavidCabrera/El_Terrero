@@ -25,7 +25,7 @@ class Club
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'id_club', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'id_club_id', orphanRemoval: true)]
     private Collection $id_teams;
 
     public function __construct()

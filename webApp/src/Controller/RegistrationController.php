@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register/success', name: 'app_register_success')]
-    public function success () {
+    public function registerSuccess () {
 
         $user = $this->getUser();
         //dd($user);
@@ -61,14 +61,19 @@ class RegistrationController extends AbstractController
             return $this->render('dashboardAdmin.html.twig', [
                 'user' => $user
                ]);
-        } else {
-            // El usuario no tiene el rol ROLE_ADMIN
+        } else if ($this->isGranted('ROLE_USER')){
+            /// El usuario tiene el rol ROLE_USER
             return $this->render('dashboardUser.html.twig', [
+                'user' => $user
+               ]);
+        } else {
+            return $this->render('home.html.twig', [
                 'user' => $user
                ]);
         }
 
-
     }
+
+   /*  #[Route('/register/fail', name: 'app_register_fail')] */
 
 }
