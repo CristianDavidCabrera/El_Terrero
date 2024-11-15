@@ -5,22 +5,28 @@
 {% block body %}
    <header>
         <nav>
-<a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a>
+{# <a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a> #}
 
-{# <a href="#equipos" onclick="window.location.href='{{ path('app_club_showYourClub', { id: user.club.id }) }}'">Club</a> #}
+<a href="#equipos" onclick="window.location.href='{{ path('app_club_showYourClub') }}'">Club</a>
 
 
             <a href="#marcador">Plantilla</a>
-            <a href="#calendario">Luchador</a>
+            <a href="#calendario">Luchadores</a>
             <a href="#clasificacion">Marcador</a>
         </nav>
         <button class="login-button" onclick="window.location.href='{{ path('home') }}'" >Logout</button>
     </header>
     <main> 
         <h1> DASHBOARD DEl USUARIO</h1>
-        <h2> {{user.email}}  </h2>
-         {#   <h2> {{user.club.id}}  </h2>
-            <h2> {{user.club.name}}  </h2> #}
+        <h2> Datos de Administrador del club (USER)</h2>
+        <h2> Email: {{user.email}}  </h2>
+        <h2> Nombre: {{user.name}}  </h2>
+        <h2> Usuario: {{user.surname}}  </h2>
+        <h2> ID: {{user.id}}  </h2>
+        <br>
+        <h2> Datos del club </h2>
+        <h2> Id del club: {{user.club.id}}  </h2>
+        <h2> Nombre del club: {{user.club.name}}  </h2> 
     </main>
 
 {% endblock %}

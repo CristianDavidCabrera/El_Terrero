@@ -3,7 +3,7 @@
 {% block title %}Club{% endblock %}
 
 {% block body %}
-    <h1>Club</h1>
+    <h1>{{ club.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -24,7 +24,10 @@
 
     <a href="{{ path('app_club_index') }}">back to list</a>
 
-    <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
 
-    {{ include('club/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
+        {{ include('club/_delete_form.html.twig') }}
+    {% endif %}
+
 {% endblock %}

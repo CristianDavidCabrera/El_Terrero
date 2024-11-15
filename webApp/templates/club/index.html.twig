@@ -3,7 +3,7 @@
 {% block title %}Club index{% endblock %}
 
 {% block body %}
-    <h1>Club index</h1>
+    <h1>Lista Clubes de Primera Categoria</h1>
 
     <table class="table">
         <thead>
@@ -16,15 +16,22 @@
         </thead>
         <tbody>
         {% for club in clubs %}
+
             <tr>
                 <td>{{ club.id }}</td>
                 <td>{{ club.name }}</td>
                 <td>{{ club.island }}</td>
                 <td>
                     <a href="{{ path('app_club_show', {'id': club.id}) }}">show</a>
-                    <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
+                    {% endif %}
+                
                 </td>
             </tr>
+
+
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
@@ -32,6 +39,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_club_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+         <a href="{{ path('app_club_new') }}">Create new</a>
+    {% endif %}
+  
 {% endblock %}

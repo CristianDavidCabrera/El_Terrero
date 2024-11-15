@@ -16,16 +16,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ClubController extends AbstractController
 {
 
-    #[IsGranted('ROLE_USER')] 
-    #[Route("user/{'id': club.user_id}", name: 'app_club_showYourClub', methods: ['GET'])]
+    /* #[IsGranted('ROLE_USER')]  */
+    #[Route("/{{user.club.id}}", name: 'app_club_showYourClub', methods: ['GET'])]
     public function showYourClub(Club $club): Response
     {
-        return $this->render('club/show.html.twig', [
+        /*   return $this->render('club/show.html.twig', [
             'club' => $club,
-        ]);
-    }
+        ]); */
+        return $this->redirectToRoute('club/show.html.twig', [], Response::HTTP_SEE_OTHER); 
+    } 
  
-    #[IsGranted('ROLE_ADMIN')]
+  /*   #[IsGranted('ROLE_ADMIN')] */
     #[Route('/', name: 'app_club_index', methods: ['GET'])]
     public function index(ClubRepository $clubRepository): Response
     {
@@ -34,7 +35,7 @@ class ClubController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_ADMIN')]
+   /*  #[IsGranted('ROLE_ADMIN')] */
     #[Route('/new', name: 'app_club_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -55,7 +56,7 @@ class ClubController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_ADMIN')]
+    /* #[IsGranted('ROLE_ADMIN')] */
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club): Response
     {
@@ -64,7 +65,7 @@ class ClubController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_ADMIN')]
+   /*  #[IsGranted('ROLE_ADMIN')] */
     #[Route('/{id}/edit', name: 'app_club_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Club $club, EntityManagerInterface $entityManager): Response
     {
@@ -83,7 +84,7 @@ class ClubController extends AbstractController
         ]);
     }
  
-    #[IsGranted('ROLE_ADMIN')]
+    /* #[IsGranted('ROLE_ADMIN')] */
     #[Route('/{id}', name: 'app_club_delete', methods: ['POST'])]
     public function delete(Request $request, Club $club, EntityManagerInterface $entityManager): Response
     {

@@ -9,8 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
@@ -55,9 +55,20 @@ class RegistrationController extends AbstractController
 
         $user = $this->getUser();
         //dd($user);
-       return $this->render('dashboardUser.html.twig', [
-        'user' => $user
-       ]);
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            // El usuario tiene el rol ROLE_ADMIN
+            return $this->render('dashboardAdmin.html.twig', [
+                'user' => $user
+               ]);
+        } else {
+            // El usuario no tiene el rol ROLE_ADMIN
+            return $this->render('dashboardUser.html.twig', [
+                'user' => $user
+               ]);
+        }
+
+
     }
 
 }
