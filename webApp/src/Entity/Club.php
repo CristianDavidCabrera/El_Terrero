@@ -26,7 +26,9 @@ class Club
     private ?User $user = null;
 
     #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'id_club_id', orphanRemoval: true)]
-    private Collection $id_teams;
+   /*  #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'club', orphanRemoval: true)] */
+
+    private Collection $id_teams;    
 
     public function __construct()
     {
@@ -38,12 +40,19 @@ class Club
         return $this->id;
     }
 
-    public function setId(User $id): static
+  /*   public function setId(User $id): static
     {
         $this->id = $id;
 
         return $this;
-    }
+    } */
+
+    public function setId(int $id): static //--> este es el cambio
+    {
+        $this->id = $id;
+
+        return $this;
+    } 
 
     public function getName(): ?string
     {

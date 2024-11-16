@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -51,12 +53,27 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register/success', name: 'app_register_success')]
-    public function registerSuccess () {
+    public function registerSuccess (TokenStorageInterface $tokenStorage, SessionInterface $session) {
 
         $user = $this->getUser();
         //dd($user);
+        /* $this->logout(); */
+        /* return $this->redirectToRoute('app_logout');  */
+        /*  return $this->render('home.html.twig', [
+            'user' => $user
+           ]); */
 
-        if ($this->isGranted('ROLE_ADMIN')) {
+               // Cerrar sesión
+   /*  $tokenStorage->setToken(null); // Esto elimina el token del usuario
+    $session->invalidate(); // Esto invalida la sesión actual
+
+    return $this->render('home.html.twig', [
+            'user' => $user
+           ]); */
+
+   
+
+       if ($this->isGranted('ROLE_ADMIN')) {
             // El usuario tiene el rol ROLE_ADMIN
             return $this->render('dashboardAdmin.html.twig', [
                 'user' => $user
@@ -67,13 +84,13 @@ class RegistrationController extends AbstractController
                 'user' => $user
                ]);
         } else {
+            $tokenStorage->setToken(null); // Esto elimina el token del usuario
+            $session->invalidate(); // Esto invalida la sesión actual
             return $this->render('home.html.twig', [
                 'user' => $user
                ]);
-        }
+        } 
+    } 
 
-    }
-
-   /*  #[Route('/register/fail', name: 'app_register_fail')] */
 
 }

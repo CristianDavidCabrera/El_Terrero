@@ -3,6 +3,9 @@
 {% block title %}Dashboard User{% endblock %}
 
 {% block body %}
+
+   {% if app.user.club is not null %}
+   
    <header>
         <nav>
 {# <a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a> #}
@@ -28,5 +31,9 @@
         <h2> Id del club: {{app.user.club.id}}  </h2>
         <h2> Nombre del club: {{app.user.club.name}}  </h2> 
     </main>
+    {% else %}
+       <h2> El usuario no está asociado a ningún club. Contacte con el administrador </h2>
+       <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Volver a la home</button>
+    {% endif %}
 
 {% endblock %}

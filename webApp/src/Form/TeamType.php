@@ -16,7 +16,7 @@ class TeamType extends AbstractType
         $builder
             ->add('division')
             ->add('id_fighter')
-            ->add('name') // Other fields
+            ->add('name')
             ->add('id_club', EntityType::class, [
                 'class' => Club::class,
                 'choices' => [$options['user_club']],
@@ -29,7 +29,7 @@ class TeamType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Team::class,
-            'user_club' => null, // Add a custom option to pass the user's club
+            'user_club' => null,
         ]);
     }
 }

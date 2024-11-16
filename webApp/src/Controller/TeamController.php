@@ -86,4 +86,15 @@ class TeamController extends AbstractController
 
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
     }
+
+/* estamos aquí ---> queremos que el usuario solo pueda ver los team de su club */
+
+ /*     #[Route("/{clubId}", name: 'app_club_showYourTeams', methods: ['GET'])]
+  public function showYourTeams(EntityManagerInterface $entityManager, $clubId): Response
+  {
+      $team = $entityManager->getRepository(Team::class)->findBy(['id' => $clubId])[0];
+        return $this->render('team/show.html.twig', [
+          'team' => $team,
+      ]);
+  }  */ 
 }
