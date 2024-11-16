@@ -16,8 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ClubController extends AbstractController
 {
 
-  
- 
     /* #[IsGranted('ROLE_ADMIN')] */
     #[Route('/', name: 'app_club_index', methods: ['GET'])]
     public function index(ClubRepository $clubRepository): Response
@@ -49,7 +47,7 @@ class ClubController extends AbstractController
     }
 
     /* #[IsGranted('ROLE_ADMIN')] */
-    #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
+    #[Route('/{id: club_id}', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club): Response
     {
         return $this->render('club/show.html.twig', [
@@ -93,6 +91,7 @@ class ClubController extends AbstractController
   public function showYourClub(EntityManagerInterface $entityManager, $clubId): Response
   {
       $club = $entityManager->getRepository(Club::class)->findBy(['id' => $clubId])[0];
+     /*  $club = $this->getUser()->getClub(); */
         return $this->render('club/show.html.twig', [
           'club' => $club,
       ]);

@@ -47,7 +47,9 @@ class TeamController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_team_show', methods: ['GET'])]
+
+    /* #[Route('/{id: club_id}', name: 'app_team_show', methods: ['GET'])] */
+    #[Route('/{id: club_id}', name: 'app_team_show', methods: ['GET'])]
     public function show(Team $team): Response
     {
         return $this->render('team/show.html.twig', [
@@ -87,14 +89,31 @@ class TeamController extends AbstractController
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
     }
 
-/* estamos aquí ---> queremos que el usuario solo pueda ver los team de su club */
 
- /*     #[Route("/{clubId}", name: 'app_club_showYourTeams', methods: ['GET'])]
+
+  /* #[IsGranted('ROLE_USER')]  */
+   #[Route("/{clubId}", name: 'app_team_showYourTeams', methods: ['GET'])]
   public function showYourTeams(EntityManagerInterface $entityManager, $clubId): Response
-  {
-      $team = $entityManager->getRepository(Team::class)->findBy(['id' => $clubId])[0];
+  {     
+        // Buscar el club por ID
+        $club = $entityManager->getRepository(Club::class)->find($clubId);
+        
+        // Verificar si el club existe
+        if (!$club) {
+            throw $this->createNotFoundException('Club not found');
+        }
+
+        // Obtener todos los equipos del club
+        $teams = $club->getTeams();
+
+        // Renderizar la vista con los equipos
         return $this->render('team/show.html.twig', [
-          'team' => $team,
-      ]);
-  }  */ 
+            'teams' => $teams,
+        ]);
+
+  }  
+
+
+
+
 }

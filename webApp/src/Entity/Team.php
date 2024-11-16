@@ -21,7 +21,7 @@ class Team
 
     #[ORM\ManyToOne(inversedBy: 'id_teams')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Club $id_club = null;
+    private ?Club $club = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $id_fighter = null;
@@ -57,12 +57,12 @@ class Team
 
     public function getIdClub(): ?Club
     {
-        return $this->id_club;
+        return $this->club;
     }
 
-    public function setIdClub(?Club $id_club): static
+    public function setIdClub(?Club $club): static
     {
-        $this->id_club = $id_club;
+        $this->club = $club;
 
         return $this;
     }

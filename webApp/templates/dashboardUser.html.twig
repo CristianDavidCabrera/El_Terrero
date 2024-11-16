@@ -9,11 +9,12 @@
    <header>
         <nav>
 {# <a href="#equipos" onclick="window.location.href='{{ path('app_club_index') }}'">Club</a> #}
+{{ dump(app.user.club) }}
 
             <a href="{{path('app_club_showYourClub', {'clubId':app.user.club.id})}}">Club</a>
-
-            <a href="{{path('app_team_index', {'clubId':app.user.club.id})}}">Plantilla</a>
-        
+           {#  <a href="{{path('app_team_index')}}">Plantilla</a> #}
+             <a href="{{path('app_team_showYourTeams', {'clubId':app.user.club.id})}}">Plantilla</a>
+ 
             <a href="#calendario">Luchadores</a>
             <a href="#clasificacion">Marcador</a>
         </nav>

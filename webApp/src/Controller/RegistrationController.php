@@ -58,20 +58,6 @@ class RegistrationController extends AbstractController
         $user = $this->getUser();
         //dd($user);
         /* $this->logout(); */
-        /* return $this->redirectToRoute('app_logout');  */
-        /*  return $this->render('home.html.twig', [
-            'user' => $user
-           ]); */
-
-               // Cerrar sesión
-   /*  $tokenStorage->setToken(null); // Esto elimina el token del usuario
-    $session->invalidate(); // Esto invalida la sesión actual
-
-    return $this->render('home.html.twig', [
-            'user' => $user
-           ]); */
-
-   
 
        if ($this->isGranted('ROLE_ADMIN')) {
             // El usuario tiene el rol ROLE_ADMIN
@@ -84,6 +70,7 @@ class RegistrationController extends AbstractController
                 'user' => $user
                ]);
         } else {
+              // Cerrar sesión
             $tokenStorage->setToken(null); // Esto elimina el token del usuario
             $session->invalidate(); // Esto invalida la sesión actual
             return $this->render('home.html.twig', [

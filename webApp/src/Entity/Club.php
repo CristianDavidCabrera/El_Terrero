@@ -25,9 +25,7 @@ class Club
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'id_club_id', orphanRemoval: true)]
-   /*  #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'club', orphanRemoval: true)] */
-
+    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'club', orphanRemoval: true)]
     private Collection $id_teams;    
 
     public function __construct()
@@ -93,12 +91,12 @@ class Club
     /**
      * @return Collection<int, Team>
      */
-    public function getIdTeams(): Collection
+    public function getTeams(): Collection
     {
         return $this->id_teams;
     }
 
-    public function addIdTeam(Team $idTeam): static
+    public function addTeam(Team $idTeam): static
     {
         if (!$this->id_teams->contains($idTeam)) {
             $this->id_teams->add($idTeam);
@@ -108,7 +106,7 @@ class Club
         return $this;
     }
 
-    public function removeIdTeam(Team $idTeam): static
+    public function removeTeam(Team $idTeam): static
     {
         if ($this->id_teams->removeElement($idTeam)) {
             // set the owning side to null (unless already changed)
