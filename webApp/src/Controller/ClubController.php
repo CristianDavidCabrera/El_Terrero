@@ -47,7 +47,7 @@ class ClubController extends AbstractController
     }
 
     /* #[IsGranted('ROLE_ADMIN')] */
-    #[Route('/{id: club_id}', name: 'app_club_show', methods: ['GET'])]
+    #[Route('/{id}/show', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club): Response
     {
         return $this->render('club/show.html.twig', [

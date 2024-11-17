@@ -56,8 +56,6 @@ class RegistrationController extends AbstractController
     public function registerSuccess (TokenStorageInterface $tokenStorage, SessionInterface $session) {
 
         $user = $this->getUser();
-        //dd($user);
-        /* $this->logout(); */
 
        if ($this->isGranted('ROLE_ADMIN')) {
             // El usuario tiene el rol ROLE_ADMIN

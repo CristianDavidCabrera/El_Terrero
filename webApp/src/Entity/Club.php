@@ -38,14 +38,7 @@ class Club
         return $this->id;
     }
 
-  /*   public function setId(User $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    } */
-
-    public function setId(int $id): static //--> este es el cambio
+    public function setId(int $id): static 
     {
         $this->id = $id;
 
