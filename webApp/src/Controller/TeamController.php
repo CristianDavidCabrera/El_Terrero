@@ -107,7 +107,7 @@ class TeamController extends AbstractController
         $teams = $club->getTeams();
 
         // Renderizar la vista con los equipos
-        return $this->render('team/show.html.twig', [
+        return $this->render('team/showAllTeams.html.twig', [
             'teams' => $teams,
         ]);
 
