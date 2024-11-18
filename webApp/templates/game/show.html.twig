@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+    <h1>Game</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ game.id }}</td>
+            </tr>
+            <tr>
+                <th>MatchDay</th>
+                <td>{{ game.matchDay ? game.matchDay|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsWinner</th>
+                <td>{{ game.isWinner ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>OnPlay</th>
+                <td>{{ game.onPlay }}</td>
+            </tr>
+            <tr>
+                <th>VisitorTeam</th>
+                <td>{{ game.visitorTeam }}</td>
+            </tr>
+            <tr>
+                <th>LocalTeam</th>
+                <td>{{ game.localTeam }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_game_index') }}">back to list</a>
+
+    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
+
+    {{ include('game/_delete_form.html.twig') }}
+{% endblock %}

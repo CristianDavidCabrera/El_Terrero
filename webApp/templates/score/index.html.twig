@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Score index{% endblock %}
+
+{% block body %}
+    <h1>Score index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Points</th>
+                <th>Is_local</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td>{{ score.id }}</td>
+                <td>{{ score.points }}</td>
+                <td>{{ score.isLocal ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_score_show', {'id': score.id}) }}">show</a>
+                    <a href="{{ path('app_score_edit', {'id': score.id}) }}">edit</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_score_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('dashboard_admin') }}" >Back Dashboard</a>
+                {% elseif is_granted('ROLE_USER') %}
+                    <a href="{{ path('dashboard_user') }}" >Back Dashboard</a>
+                {% endif %}
+{% endblock %}

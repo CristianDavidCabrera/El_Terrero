@@ -26,6 +26,7 @@ class Team
     #[ORM\Column(nullable: true)]
     private ?int $id_fighter = null;
 
+
     public function getId(): ?int
     {
         return $this->id;

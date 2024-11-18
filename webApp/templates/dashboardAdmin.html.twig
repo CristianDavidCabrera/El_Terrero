@@ -7,8 +7,8 @@
         <nav>
             <a href="{{ path('app_club_index') }}">Clubes</a>
             <a href="{{path('app_team_index')}}">Equipos</a>
-            <a href="#">Luchadores</a>
-            <a href="#">Marcadores</a>
+            <a href="{{path('app_game_index')}}">Luchadas</a>
+            <a href="{{path('app_score_index')}}">Marcadores</a>  
             <a href="#">Usuarios</a>
         </nav>
         <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Logout</button>
