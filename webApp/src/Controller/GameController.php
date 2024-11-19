@@ -26,18 +26,28 @@ class GameController extends AbstractController
     #[Route('/new', name: 'app_game_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-      
+
+
 
         $game = new Game();
         $form = $this->createForm(GameType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $localScore= new Score();
-            $visitorScore =new Score();
+
+            $localScore = new Score();
+            $visitorScore = new Score();
 
             $entityManager->persist($game);
             $entityManager->flush();
+
+            $localScore->setGame($game)->setIsLocal(true)->setPoints(0);
+            $visitorScore->setGame($game)->setIsLocal(false)->setPoints(0);
+            $entityManager->persist($localScore);
+
+            $entityManager->persist($visitorScore);
+            $entityManager->flush();
+
 
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -77,7 +87,7 @@ class GameController extends AbstractController
     #[Route('/{id}', name: 'app_game_delete', methods: ['POST'])]
     public function delete(Request $request, Game $game, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$game->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $game->getId(), $request->request->get('_token'))) {
             $entityManager->remove($game);
             $entityManager->flush();
         }

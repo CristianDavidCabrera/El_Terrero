@@ -23,34 +23,41 @@
             <p>Mapa de las islas canarias con la ubicación de los equipos participantes.</p>
         </section>
 <pre>
+{# 
+ {% for team in teams %}
+    <tr>
+        <td>{{ team.name}}</td>
+    </tr>
+{% endfor %}  #}
 
  {% for game in games %}
-
-{#  <pre>
-    {{ dump(clubes) }}
-    {{ dump(teams) }}
-    {{ dump(scores) }}
- </pre> #}
-
-{# {{encore_entry_script_tags('reloadHome')}} #}
-
-
-    <table class="table">
-        <tbody>
-
-            <tr>
-                <th>Local</th>
-                <td>{{ game.localTeam }}</td>
-            </tr>
-            <tr>
-                <th>Visitor</th>
-                <td>{{ game.visitorTeam }}</td>
-            </tr>
-          
-        </tbody>
-    </table>
-
+ {{game.matchDay | date("m/d/Y g:i:sA")}}
+ {{game.id}}
+ {% for score in scores %}
+ 
+    {% if (score.game == game)%}
+    
+        {% for team in teams %}
+            <table class="table">
+                <tbody>
+                {% if (team.id == game.localTeam )%}
+                <tr>
+                        <th>Local {{ team.name }}</th>
+                        <td>{{ score.points }}</td>
+                    </tr>
+                {% elseif (team.id == game.visitorTeam )%}
+                <tr>
+                        <th>Visitor {{ team.name }}</th>
+                        <td>{{ score.points }}</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            {% endfor %} 
+            </table>
+        {% endif %}
     {% endfor %} 
+
+{% endfor %} 
 
 
 
