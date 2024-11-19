@@ -3,160 +3,91 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-   <header  class="bg-blue-500 text-white p-2 flex justify-between items-center">
-        <nav>
-            <a href="#leyendas"   class="text-white no-underline mx-4">Leyendas</a>
-            <a href="#promesas" class="text-white no-underline mx-4">Promesas</a>
-            <a href="#equipos" class="text-white no-underline mx-4">Equipos</a>
-            <a href="#marcador" class="text-white no-underline mx-4">Marcador</a>
-            <a href="#calendario" class="text-white no-underline mx-4">Calendario</a>
-            <a href="#clasificacion" class="text-white no-underline mx-4">Clasificación</a>
-        </nav>
-        <button class="login-button" onclick="window.location.href='{{ path('app_login') }}'" >Login</button>
-    </header>
 
-    <main>
-        <!-- Sección de Equipos -->
-        <section class="teams" id="equipos"
+    <div class="inset-0 bg-cover bg-center bg-no-repeat" 
+         style="background-image: url('{{ asset('images/static/dibujo.png') }}');">
+  
 
-            <h2>Descripcion misión </h2>
-            <p>Ofrecer a los aficionados a la lucha canaria los resultados de las luchadas con resultados al minuto.</p>
-            <p>Ofrecer a los clubes de lucha un lugar donde administrar el contenido generado por sus clubes.</p>
-            <p>Dar visibilidad a todos los clubes asociados.</p>
-        </section>
-<pre>
+        <header class="bg-gray-800 bg-opacity-70 backdrop-blur-md text-white p-4 sticky top-0 z-50 shadow-lg">
 
+            <nav class="flex justify-between items-center">
+                <div>
+                    <a href="#leyendas" class="text-white hover:text-yellow-400 mx-2">Leyendas</a>
+                    <a href="#promesas" class="text-white hover:text-yellow-400 mx-2">Promesas</a>
+                    <a href="#equipos" class="text-white hover:text-yellow-400 mx-2">Equipos</a>
+                    <a href="#marcador" class="text-white hover:text-yellow-400 mx-2">Marcador</a>
+                    <a href="#calendario" class="text-white hover:text-yellow-400 mx-2">Calendario</a>
+                    <a href="#clasificacion" class="text-white hover:text-yellow-400 mx-2">Clasificación</a>
+                </div>
+                <button class="bg-yellow-400 text-gray-800 px-4 py-2 rounded hover:bg-yellow-500" onclick="window.location.href='{{ path('app_login') }}'">Login</button>
+            </nav>
+        </header>
 
-{% for game in games %}
-  <p class="mb-4 text-center text-lg font-semibold text-gray-800 dark:text-white">
-    {{ game.matchDay | date("m/d/Y g:i:sA") }}
-  </p>
-  <div class="flex items-center justify-center space-x-4 mb-6">
-    {% for score in game.scores %}
-      {% if score.isLocal == true %}
-        <div class="flex items-center w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-          <h5 class="text-xl font-bold text-gray-900 dark:text-white">{{ score.team.name }}</h5>
-          <span class="ml-auto text-xl font-bold text-gray-900 dark:text-white">{{ score.points }}</span>
-        </div>
-      {% else %}
-        <div class="flex items-center w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-          <span class="text-xl font-bold text-gray-900 dark:text-white">{{ score.points }}</span>
-          <h5 class="ml-auto text-xl font-bold text-gray-900 dark:text-white">{{ score.team.name }}</h5>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-{% endfor %}
+        <section class="bg-gray-100 bg-opacity-70 py-8">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Nuestra Misión</h2>
+                <p class="text-gray-700 mb-2">Ofrecer a los aficionados a la lucha canaria los resultados de las luchadas al minuto.</p>
+                <p class="text-gray-700 mb-2">Proveer a los clubes un espacio para administrar sus contenidos.</p>
+                <p class="text-gray-700">Dar visibilidad a todos los clubes asociados.</p>
+            </div>
+        </section>     
+    </div>  
 
 
-{# 
- {% for game in games %}
- {{game.matchDay | date("m/d/Y g:i:sA")}}
- {% for score in scores %}
- 
-    {% if (score.game == game)%}
-    
-        {% for team in teams %}
-            <table class="table">
-                <tbody>
-                {% if (team.id == game.localTeam )%}
-                <tr>
-                        <th>Local {{ team.name }}</th>
-                        <td>{{ score.points }}</td>
-                    </tr>
-                {% elseif (team.id == game.visitorTeam )%}
-                <tr>
-                        <th>Visitor {{ team.name }}</th>
-                        <td>{{ score.points }}</td>
-                    </tr>
-                {% endif %}
-                </tbody>
-            {% endfor %} 
-            </table>
-        {% endif %}
-    {% endfor %} 
-
-{% endfor %}  #}
-
-
-
-
-</pre>
-
+    <main class="mt-8 z-50">
         <!-- Sección de Marcadores -->
-        <section  id="marcador">
-            <h2>Marcadores</h2>
-            <p>Marcadores actualizados de las competiciones.</p>
+        <section id="marcador" class="py-8">
+            <div class="container mx-auto">
+                <h2 class="text-2xl font-bold text-center mb-6">Marcadores</h2>
+                {% for game in games %}
+                <div class="bg-gray-100 p-4 mb-4 rounded shadow">
+                    <p class="text-center text-gray-600 mb-4">{{ game.matchDay | date("d/m/Y g:i A") }}</p>
+                    <div class="flex justify-center space-x-4">
+                        {% for score in game.scores %}
+                            {% if score.isLocal == true %}
+                            <div class="flex items-center bg-white p-4 shadow rounded border">
+                                <h5 class="text-lg font-semibold text-gray-800 mr-4">{{  score.team.name  }}</h5>
+                                <h5 class="ml-auto text-lg font-bold">{{  score.points  }}</h5>
+                            </div>
+                            {% else %}
+                            <div class="flex items-center bg-white p-4 shadow rounded border">
+                                <h5 class="ml-auto text-lg font-bold mr-4"> {{  score.points  }}</h5>
+                                <h5 class="text-lg font-semibold text-gray-800"> {{  score.team.name  }}</h5>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}     
+            </div>
         </section>
 
-        <!-- Sección de Clasificación -->
-        <section  id="clasificacion">
-            <h2>Clasificación</h2>
-            <p>Clasificación actual de los equipos. Con los grupos A y B.</p>
-        </section>
-
-        <br>
-        <br>
-        <!-- Logos de patrocinadores federaciones insulares y regional-->
-        <div><h2> Enlaces a las federaciones</h2><div>
-        <br>
-        <br>
-        <section >
-            
-            <img src="sponsor1.png" alt="Patrocinador 1">
-            <img src="sponsor2.png" alt="Patrocinador 2">
-            <img src="sponsor3.png" alt="Patrocinador 3">
-            <img src="sponsor4.png" alt="Patrocinador 4">
-            <img src="sponsor5.png" alt="Patrocinador 5">
-            <img src="sponsor6.png" alt="Patrocinador 6">
-       
-        </section>
-        <br>
-        <br>
-     <!-- Tarjetas principales -->
-      {#   <section class="cards">
-            <div class="card" id="calendario">
-                <h2>Calendario</h2>
-                <p>Consulta las próximas competiciones y eventos.</p>
+        <!-- Logos de patrocinadores -->
+        <section class="bg-gray-100 py-8">
+            <div class="container mx-auto text-center">
+                <h2 class="text-2xl font-bold mb-4">Nuestros Patrocinadores</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <img src="sponsor1.png" alt="Patrocinador 1" class="h-16 mx-auto">
+                    <img src="sponsor2.png" alt="Patrocinador 2" class="h-16 mx-auto">
+                    <img src="sponsor3.png" alt="Patrocinador 3" class="h-16 mx-auto">
+                    <img src="sponsor4.png" alt="Patrocinador 4" class="h-16 mx-auto">
+                </div>
             </div>
-            <div class="card" id="leyendas">
-                <h2>Leyendas</h2>
-                <p>Descubre la historia y los grandes íconos de la lucha canaria.</p>
-            </div>
-            <div class="card" id="promesas">
-                <h2>Promesas</h2>
-                <p>Conoce a las jóvenes promesas del deporte.</p>
-            </div>
-        </section> #}
-        
-        <!-- Logos de patrocinadores cabildos y gobierno de canarias -->
-        <div>  <h2>Logos a los cabildos y patrocinadores oficiales</h2> <div>
-        <section class="sponsors">
-
-            <img src="sponsor7.png" alt="Patrocinador 7">
-            <img src="sponsor8.png" alt="Patrocinador 8">
-            <img src="sponsor9.png" alt="Patrocinador 9">
-            <img src="sponsor10.png" alt="Patrocinador 10">
-            <img src="sponsor11.png" alt="Patrocinador 11">
-            <img src="sponsor12.png" alt="Patrocinador 12">
-            <img src="sponsor13.png" alt="Patrocinador 13">
-            <img src="sponsorN.png" alt="Patrocinador n">
         </section>
     </main>
-
-    <footer class="bg-blue-500 text-white p-2 flex justify-between items-center">
-        <a href="#leyendas" class="text-white no-underline mx-4">Leyendas</a> 
-        <a href="#promesas" class="text-white no-underline mx-4">Promesas</a> 
-        <a href="#equipos" class="text-white no-underline mx-4">Equipos</a> 
-        <a href="#marcador" class="text-white no-underline mx-4">Marcador</a> 
-        <a href="#calendario" class="text-white no-underline mx-4">Calendario</a> 
-        <a href="#clasificacion" class="text-white no-underline mx-4">Clasificación</a>
+  
+    <footer class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="#leyendas" class="text-white hover:text-yellow-400">Leyendas</a>
+            <a href="#promesas" class="text-white hover:text-yellow-400">Promesas</a>
+            <a href="#equipos" class="text-white hover:text-yellow-400">Equipos</a>
+        </div>
     </footer>
-
 {% endblock %}
 
-{# 
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/reloadHome.js') }}"></script>
-{% endblock %} #}
+    <script src="{{ asset('js/scrollHome.js') }}"></script>
+{% endblock %} 
