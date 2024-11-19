@@ -22,6 +22,40 @@
             <p>Información sobre los equipos participantes.</p>
             <p>Mapa de las islas canarias con la ubicación de los equipos participantes.</p>
         </section>
+<pre>
+
+ {% for game in games %}
+
+{#  <pre>
+    {{ dump(clubes) }}
+    {{ dump(teams) }}
+    {{ dump(scores) }}
+ </pre> #}
+
+{# {{encore_entry_script_tags('reloadHome')}} #}
+
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Local</th>
+                <td>{{ game.localTeam }}</td>
+            </tr>
+            <tr>
+                <th>Visitor</th>
+                <td>{{ game.visitorTeam }}</td>
+            </tr>
+          
+        </tbody>
+    </table>
+
+    {% endfor %} 
+
+
+
+
+</pre>
 
         <!-- Sección de Marcadores -->
         <section class="scores" id="marcador">
@@ -93,4 +127,10 @@
         <a href="#clasificacion">Clasificación</a>
     </footer>
 
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/reloadHome.js') }}"></script>
 {% endblock %}

@@ -1,20 +1,40 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\Game;
+use App\Repository\ClubRepository;
+use App\Repository\GameRepository;
+use App\Repository\ScoreRepository;
+use App\Repository\TeamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+/* use Symfony\Component\BrowserKit\Response; */
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function success () {
-
-      //me traigo los games on game
-      //me traigo el marcador de cada j
+    public function success (ClubRepository $clubes, TeamRepository $teams ,GameRepository $games, ScoreRepository $scores): Response
+    {
 
 
-      return $this->render('home.html.twig');
+      /* return $this->render('home.html.twig'); */
+  
+     
+      //me traigo los games inGame
+      //me traigo el marcador de cada juego.
+
+         return $this->render('home.html.twig', [
+            'clubes' => $clubes->findAll(),
+            'teams' => $teams->findAll(), 
+            'games' => $games->findAll(),
+            'scores'=> $scores->findAll()
+     ]);
+
+ 
+
     }
 
     #[Route('/dashboar_user', name: 'dashboard_user')]

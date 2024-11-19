@@ -19,19 +19,18 @@
                 <th>Division</th>
                 <td>{{ team.division }}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Id_fighter</th>
                 <td>{{ team.idFighter }}</td>
-            </tr>
+            </tr> #}
         </tbody>
     </table>
 
       {#  <a href="{{ path('app_team_index') }}">back to list</a> #}
 {#    <a href="{{path('app_team_showYourTeams', {'clubId':app.user.club.id})}}">Back teams</a> #}
- <a href="{{path('dashboard_user')}}">Back dashboard</a>
-
-    <a href="{{ path('app_team_edit', {'id': team.id}) }}">Edit</a>
-<a href="{{ path('app_team_new') }}">Create new</a>
+        <a href="{{path('dashboard_user')}}">Back dashboard</a>
+        <a href="{{ path('app_team_edit', {'id': team.id}) }}">Edit</a>
+        <a href="{{ path('app_team_new') }}">Create new</a>
     {{ include('team/_delete_form.html.twig') }}
     {% endfor %}
 {% endblock %}

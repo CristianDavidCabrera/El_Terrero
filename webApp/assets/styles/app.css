@@ -132,6 +132,7 @@ label {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-bottom: 1rem;
 }
 
 .btn.btn-lg.btn-primary:hover {
@@ -225,21 +226,7 @@ input[type="checkbox"] {
 }
 
 /* Botón de registro */
-.btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px;
-    width: 100%;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-.btn:hover {
-    background-color: #0056b3;
-}
 
 /* Adaptación para mensajes de error específicos */
 .form-error-message {
