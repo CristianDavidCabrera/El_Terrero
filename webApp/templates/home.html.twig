@@ -17,22 +17,18 @@
 
     <main class="main-content">
         <!-- Sección de Equipos -->
-        <section class="teams" id="equipos">
+        <section class="teams" id="equipos"
+
             <h2>Equipos</h2>
             <p>Información sobre los equipos participantes.</p>
             <p>Mapa de las islas canarias con la ubicación de los equipos participantes.</p>
         </section>
 <pre>
-{# 
- {% for team in teams %}
-    <tr>
-        <td>{{ team.name}}</td>
-    </tr>
-{% endfor %}  #}
+
 
  {% for game in games %}
  {{game.matchDay | date("m/d/Y g:i:sA")}}
- {{game.id}}
+ {# {{game.id}} #}
  {% for score in scores %}
  
     {% if (score.game == game)%}
