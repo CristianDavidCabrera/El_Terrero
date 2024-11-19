@@ -3,32 +3,55 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-   <header>
+   <header  class="bg-blue-500 text-white p-2 flex justify-between items-center">
         <nav>
-            <a href="#leyendas">Leyendas</a>
-            <a href="#promesas">Promesas</a>
-            <a href="#equipos">Equipos</a>
-            <a href="#marcador">Marcador</a>
-            <a href="#calendario">Calendario</a>
-            <a href="#clasificacion">Clasificación</a>
+            <a href="#leyendas"   class="text-white no-underline mx-4">Leyendas</a>
+            <a href="#promesas" class="text-white no-underline mx-4">Promesas</a>
+            <a href="#equipos" class="text-white no-underline mx-4">Equipos</a>
+            <a href="#marcador" class="text-white no-underline mx-4">Marcador</a>
+            <a href="#calendario" class="text-white no-underline mx-4">Calendario</a>
+            <a href="#clasificacion" class="text-white no-underline mx-4">Clasificación</a>
         </nav>
         <button class="login-button" onclick="window.location.href='{{ path('app_login') }}'" >Login</button>
     </header>
 
-    <main class="main-content">
+    <main>
         <!-- Sección de Equipos -->
         <section class="teams" id="equipos"
 
-            <h2>Equipos</h2>
-            <p>Información sobre los equipos participantes.</p>
-            <p>Mapa de las islas canarias con la ubicación de los equipos participantes.</p>
+            <h2>Descripcion misión </h2>
+            <p>Ofrecer a los aficionados a la lucha canaria los resultados de las luchadas con resultados al minuto.</p>
+            <p>Ofrecer a los clubes de lucha un lugar donde administrar el contenido generado por sus clubes.</p>
+            <p>Dar visibilidad a todos los clubes asociados.</p>
         </section>
 <pre>
 
 
+{% for game in games %}
+  <p class="mb-4 text-center text-lg font-semibold text-gray-800 dark:text-white">
+    {{ game.matchDay | date("m/d/Y g:i:sA") }}
+  </p>
+  <div class="flex items-center justify-center space-x-4 mb-6">
+    {% for score in game.scores %}
+      {% if score.isLocal == true %}
+        <div class="flex items-center w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="text-xl font-bold text-gray-900 dark:text-white">{{ score.team.name }}</h5>
+          <span class="ml-auto text-xl font-bold text-gray-900 dark:text-white">{{ score.points }}</span>
+        </div>
+      {% else %}
+        <div class="flex items-center w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <span class="text-xl font-bold text-gray-900 dark:text-white">{{ score.points }}</span>
+          <h5 class="ml-auto text-xl font-bold text-gray-900 dark:text-white">{{ score.team.name }}</h5>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}
+
+
+{# 
  {% for game in games %}
  {{game.matchDay | date("m/d/Y g:i:sA")}}
- {# {{game.id}} #}
  {% for score in scores %}
  
     {% if (score.game == game)%}
@@ -53,7 +76,7 @@
         {% endif %}
     {% endfor %} 
 
-{% endfor %} 
+{% endfor %}  #}
 
 
 
@@ -61,13 +84,13 @@
 </pre>
 
         <!-- Sección de Marcadores -->
-        <section class="scores" id="marcador">
+        <section  id="marcador">
             <h2>Marcadores</h2>
             <p>Marcadores actualizados de las competiciones.</p>
         </section>
 
         <!-- Sección de Clasificación -->
-        <section class="classification" id="clasificacion">
+        <section  id="clasificacion">
             <h2>Clasificación</h2>
             <p>Clasificación actual de los equipos. Con los grupos A y B.</p>
         </section>
@@ -78,7 +101,7 @@
         <div><h2> Enlaces a las federaciones</h2><div>
         <br>
         <br>
-        <section class="sponsors">
+        <section >
             
             <img src="sponsor1.png" alt="Patrocinador 1">
             <img src="sponsor2.png" alt="Patrocinador 2">
@@ -114,26 +137,26 @@
             <img src="sponsor8.png" alt="Patrocinador 8">
             <img src="sponsor9.png" alt="Patrocinador 9">
             <img src="sponsor10.png" alt="Patrocinador 10">
-            <img src="sponsor11.png" alt="Patrocinador 11">'user'
+            <img src="sponsor11.png" alt="Patrocinador 11">
             <img src="sponsor12.png" alt="Patrocinador 12">
             <img src="sponsor13.png" alt="Patrocinador 13">
             <img src="sponsorN.png" alt="Patrocinador n">
         </section>
     </main>
 
-    <footer>
-        <a href="#leyendas">Leyendas</a> |
-        <a href="#promesas">Promesas</a> |
-        <a href="#equipos">Equipos</a> |
-        <a href="#marcador">Marcador</a> |
-        <a href="#calendario">Calendario</a> |
-        <a href="#clasificacion">Clasificación</a>
+    <footer class="bg-blue-500 text-white p-2 flex justify-between items-center">
+        <a href="#leyendas" class="text-white no-underline mx-4">Leyendas</a> 
+        <a href="#promesas" class="text-white no-underline mx-4">Promesas</a> 
+        <a href="#equipos" class="text-white no-underline mx-4">Equipos</a> 
+        <a href="#marcador" class="text-white no-underline mx-4">Marcador</a> 
+        <a href="#calendario" class="text-white no-underline mx-4">Calendario</a> 
+        <a href="#clasificacion" class="text-white no-underline mx-4">Clasificación</a>
     </footer>
 
 {% endblock %}
 
-
+{# 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/reloadHome.js') }}"></script>
-{% endblock %}
+{% endblock %} #}

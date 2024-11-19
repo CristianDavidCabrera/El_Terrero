@@ -31,6 +31,14 @@ class Game
     #[ORM\Column]
     private ?int $localTeam = null;
 
+
+    #[ORM\OneToMany(targetEntity: Score::class, mappedBy: 'game', orphanRemoval: false)]
+    private ?Collection $scores = null;
+
+    public function __construct() {
+        $this->scores = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +111,31 @@ class Game
 
         return $this;
     }
+    /**
+     * @return Collection<int, Team>
+     */
+    public function getScores(): Collection {
+        return $this->scores;
+    }
 
+    public function addScores(Score $scores): static {
+        if (!$this->scores->contains($scores)) {
+            $this->scores->add($scores);
+            $scores->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $scores): static {
+        if ($this->scores->removeElement($scores)) {
+            // set the owning side to null (unless already changed)
+            if ($scores->getGame() === $this) {
+                $scores->setGame(null);
+            }
+        }
+
+        return $this;
+    }
    
 }

@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Game;
+use App\Entity\Team;
 use App\Entity\Score;
 use App\Form\GameType;
 use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/game')]
 class GameController extends AbstractController
@@ -41,13 +42,17 @@ class GameController extends AbstractController
             $entityManager->persist($game);
             $entityManager->flush();
 
-            $localScore->setGame($game)->setIsLocal(true)->setPoints(0);
-            $visitorScore->setGame($game)->setIsLocal(false)->setPoints(0);
+            $teamRepository = $entityManager->getRepository(Team::class);
+            $localScore->setGame($game)->setIsLocal(true)->setPoints(0)->setTeam($teamRepository->find($form->get('localTeam')->getData()));
+          
+            $visitorScore->setGame($game)->setIsLocal(false)->setPoints(0)->setTeam($teamRepository->find($form->get('visitorTeam')->getData()));
             $entityManager->persist($localScore);
-
             $entityManager->persist($visitorScore);
             $entityManager->flush();
-
+            $game->addScores($localScore);
+            $game->addScores($visitorScore);
+            $entityManager->persist($game);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
         }

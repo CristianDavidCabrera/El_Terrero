@@ -25,6 +25,10 @@ class Score
     #[ORM\JoinColumn(nullable: false)]
     private ?Game $game = null;
 
+    #[ORM\ManyToOne(inversedBy: 'score')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +73,18 @@ class Score
     public function setGame(?Game $game): static
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): static
+    {
+        $this->team = $team;
 
         return $this;
     }
