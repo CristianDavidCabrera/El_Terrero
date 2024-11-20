@@ -1,44 +1,4 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Dashboard User{% endblock %}
-
-{% block body %}
-
-   {% if app.user.club is not null %}
-   
-   <header>
-        <nav>
-            <a href="{{path('app_club_showYourClub', {'clubId':app.user.club.id})}}">Club</a>
-            <a href="{{path('app_team_showYourTeams', {'clubId':app.user.club.id})}}">Equipos</a>
- 
-            <a href="{{path('app_game_index')}}">Luchada</a>
-            <a href="{{path('app_score_index')}}">Marcador</a>  
-        </nav>
-        <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Logout</button>
-    </header>
-    <main> 
-        <h1> DASHBOARD DEl USUARIO</h1>
-        <h2> Datos de Administrador del club (USER)</h2>
-        <h2> Email: {{app.user.email}}  </h2>
-        <h2> Nombre: {{app.user.name}}  </h2>
-        <h2> Usuario: {{app.user.surname}}  </h2>
-        <h2> ID: {{app.user.id}}  </h2>
-        <br>
-        <h2> Datos del club </h2>
-        <h2> Id del club: {{app.user.club.id}}  </h2>
-        <h2> Nombre del club: {{app.user.club.name}}  </h2> 
-    </main>
-    {% else %}
-       <h2> El usuario no está asociado a ningún club. Contacte con el administrador </h2>
-       <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Volver a la home</button>
-    {% endif %}
-
-{% endblock %}
- #}
-
-
-
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Dashboard User{% endblock %}
 

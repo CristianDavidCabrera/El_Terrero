@@ -3,18 +3,22 @@
 {% block title %}Dashboard User{% endblock %}
 
 {% block body %}
-   <header>
-        <nav>
-            <a href="{{ path('app_club_index') }}">Clubes</a>
-            <a href="{{path('app_team_index')}}">Equipos</a>
-            <a href="{{path('app_game_index')}}">Luchadas</a>
-            <a href="{{path('app_score_index')}}">Marcadores</a>  
-            <a href="#">Usuarios</a>
-        </nav>
-        <button class="login-button" onclick="window.location.href='{{ path('app_logout') }}'" >Logout</button>
-    </header>
-    <main> 
-        <h1> DASHBOARD DEl ADMIN</h1>
-    </main>
+<header class="bg-gray-800 text-white p-4 shadow">
+    <nav class="flex justify-between items-center">
+        <div class="flex space-x-4">
+            <a href="{{ path('app_club_index') }}" class="hover:text-yellow-400">Clubes</a>
+            <a href="{{ path('app_team_index') }}" class="hover:text-yellow-400">Equipos</a>
+            <a href="{{ path('app_game_index') }}" class="hover:text-yellow-400">Luchadas</a>
+            <a href="{{ path('app_score_index') }}" class="hover:text-yellow-400">Marcadores</a>
+            <a href="#" class="hover:text-yellow-400">Usuarios</a>
+        </div>
+        <button class="bg-yellow-400 text-gray-800 px-4 py-2 rounded hover:bg-yellow-500"
+                onclick="window.location.href='{{ path('app_logout') }}'">Logout</button>
+    </nav>
+</header>
+
+<main class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Dashboard del Administrador</h1>
+</main>
 
 {% endblock %}
