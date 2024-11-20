@@ -3,6 +3,7 @@
 {% block title %}Dashboard User{% endblock %}
 
 {% block body %}
+{% block header%}
 <header class="bg-gray-800 text-white p-4 shadow">
     <nav class="flex justify-between items-center">
         <div class="flex space-x-4">
@@ -16,7 +17,7 @@
                 onclick="window.location.href='{{ path('app_logout') }}'">Logout</button>
     </nav>
 </header>
-
+{% endblock %}
 <main class="container mx-auto p-8">
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Dashboard del Administrador</h1>
 </main>
