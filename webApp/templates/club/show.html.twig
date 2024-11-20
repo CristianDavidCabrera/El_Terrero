@@ -3,32 +3,48 @@
 {% block title %}Club{% endblock %}
 
 {% block body %}
-    <h1>{{ club.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ club.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ club.name }}</td>
-            </tr>
-            <tr>
-                <th>Island</th>
-                <td>{{ club.island }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+<div class="bg-gray-800 text-white p-4 shadow"> 
+    <h1 class="text-2xl font-bold text-center my-4  dark:text-white ">{{ club.name }}</h1>
+</div>
+  
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6"> 
+    <div class="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 dark:border-gray-700">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">{{ club.name }}</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Ubicado en: <span class="font-medium">{{ club.island }}</span></p>
+            <div class="mt-4 flex justify-between ">
+                <a href="{{ path('app_club_show', {'id': club.id}) }}" 
+                   class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
+                    Ver detalles
+                </a>
+                
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_club_edit', {'id': club.id}) }}" 
+                       class="text-sm font-medium text-yellow-500 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-600">
+                        Editar
+                    </a>
+                {% endif %}
+            </div>
+    </div>
+</div>
+<div class="mt-6 flex justify-center">
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_club_index') }}">back to list</a>
-        <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
-        {{ include('club/_delete_form.html.twig') }}
-        <button class="login-button" onclick="window.location.href='{{ path('dashboard_admin') }}'" >Back Dashboard</button>
+        <a href="{{ path('app_club_new') }}" 
+           class="ml-4 dark:bg-gray-800 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg shadow">
+            Crear Nuevo Club
+        </a>
+         <a href="{{ path('dashboard_admin') }}" 
+       class="ml-4 dark:bg-gray-800 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg shadow">
+        Volver al Dashboard
+    </a>
     {% elseif is_granted('ROLE_USER') %}
-        <button class="login-button" onclick="window.location.href='{{ path('dashboard_user') }}'" >Back Dashboard</button>
+
+        <a href="{{ path('dashboard_user') }}" 
+        class="ml-4 dark:bg-gray-800 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg shadow">
+            Volver al Dashboard
+        </a>
     {% endif %}
 
+
+</div>
 {% endblock %}
