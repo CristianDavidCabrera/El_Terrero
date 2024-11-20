@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="inset-0 bg-cover bg-center bg-no-repeat" 
+    <div class="inset-0 bg-cover bg-center bg-no-repeat h-[700px]" 
          style="background-image: url('{{ asset('images/static/dibujo.png') }}');">
   
 
@@ -88,6 +88,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/reloadHome.js') }}"></script>
+  {#  <script src="{{ asset('js/reloadHome.js') }}"></script> #}
     <script src="{{ asset('js/scrollHome.js') }}"></script>
 {% endblock %} 
