@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Club;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/team')]
 class TeamController extends AbstractController
@@ -19,7 +20,9 @@ class TeamController extends AbstractController
     public function index(TeamRepository $teamRepository): Response
     {
         return $this->render('team/index.html.twig', [
-            'teams' => $teamRepository->findAll(),
+            'teams' => $this->isGranted('ROLE_ADMIN') ? 
+            $teamRepository->findAll() :
+            $this->getUser()->getClub()->getTeams()->toArray()
         ]);
     }
 
@@ -48,12 +51,13 @@ class TeamController extends AbstractController
     }
 
 
-    /* #[Route('/{id: club_id}', name: 'app_team_show', methods: ['GET'])] */
-    #[Route('/{id: club_id}', name: 'app_team_show', methods: ['GET'])]
-    public function show(Team $team): Response
+    #[Route('/{id}', name: 'app_team_show', methods: ['GET'])]
+    public function show($id, EntityManagerInterface $entityManager): Response
     {
+
+        $team = $entityManager->getRepository(Team::class)->find($id);
         return $this->render('team/show.html.twig', [
-            'team' => $team,
+            'team' => $team
         ]);
     }
 

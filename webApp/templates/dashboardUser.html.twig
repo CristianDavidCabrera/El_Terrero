@@ -11,7 +11,7 @@
         <div class="flex space-x-4">
             <a href="{{ path('app_club_showYourClub', {'clubId': app.user.club.id}) }}" 
                class="hover:text-yellow-400">Club</a>
-            <a href="{{ path('app_team_showYourTeams', {'clubId': app.user.club.id}) }}" 
+            <a href="{{ path('app_team_index', {'clubId': app.user.club.id}) }}" 
                class="hover:text-yellow-400">Equipos</a>
             <a href="{{ path('app_game_index') }}" class="hover:text-yellow-400">Luchada</a>
             <a href="{{ path('app_score_index') }}" class="hover:text-yellow-400">Marcador</a>
