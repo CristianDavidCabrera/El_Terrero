@@ -15,19 +15,32 @@ class ClubType extends AbstractType
     {
         $builder
         ->add('name', null, [
+            'label' => 'Club Name', 
+                'label_attr' => [
+                    'class' => 'text-white font-semibold mb-2'
+                ],
             'attr' => [
-                'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500',
             ],
         ])
             ->add('island',  null, [
+                'label' => 'Island', 
+                    'label_attr' => [
+                        'class' => 'text-white font-semibold mb-2'
+                    ],
                 'attr' => [
-                    'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                ],])
+                    'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                ],
+            ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-'choice_label' => 'id', 'attr' => [
-                'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-            ],
+'choice_label' => 'id', 'label' => 'User', 
+                    'label_attr' => [
+                        'class' => 'text-white font-semibold mb-2'
+                    ],
+                'attr' => [
+                    'class' => 'my-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                ],
             ])
         ;
     }

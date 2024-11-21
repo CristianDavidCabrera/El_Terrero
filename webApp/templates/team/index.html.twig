@@ -3,49 +3,59 @@
 {% block title %}Team index{% endblock %}
 
 {% block body %}
-    <h1>Team index</h1>
+<div class="bg-gray-800 text-white p-4 shadow">
+    <h1 class="text-2xl font-bold text-center my-4 dark:text-white">Lista de Equipos</h1>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-               {#  <th>id_club_id</th> #}
-                <th>Name</th>
-                <th>Division</th>
-                {# <th>Id_fighter</th> #}
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for team in teams %}
-            <tr>
-                <td>{{ team.id }}</td>
-                <td>{{ team.name }}</td>
-                <td>{{ team.division }}</td>
-               {#  <td>{{ team.idFighter }}</td> #}
-                <td>
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
-                {% elseif is_granted('ROLE_USER') %}
-                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
-                {% endif %}
-                   
-                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_team_new') }}">Create new</a>
-    {% if is_granted('ROLE_ADMIN') %}
-         <button class="login-button" onclick="window.location.href='{{ path('dashboard_admin') }}'" >Back Dashboard</button>
-    {% elseif is_granted('ROLE_USER') %}
-        <button class="login-button" onclick="window.location.href='{{ path('dashboard_user') }}'" >Back Dashboard</button>
-    {% endif %}
+<div class="flex justify-center items-center min-h-screen">
+    <div class="w-full max-w-4xl">
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <thead class="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Id</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nombre</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">División</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-400">
+                    {% for team in teams %}
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4">{{ team.id }}</td>
+                            <td class="px-6 py-4">{{ team.name }}</td>
+                            <td class="px-6 py-4">{{ team.division }}</td>
+                            <td class="px-6 py-4">
+                                <div class="flex space-x-4">
+                                    <a href="{{ path('app_team_show', {'id': team.id}) }}" 
+                                       class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
+                                        Ver detalles
+                                    </a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('app_team_edit', {'id': team.id}) }}" 
+                                           class="text-sm font-medium text-yellow-500 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-600">
+                                            Editar
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                                No se encontraron registros.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 flex justify-end">
+            <a href="{{ is_granted('ROLE_ADMIN') ? path('dashboard_admin') : path('dashboard_user') }}" 
+               class="bg-yellow-400 text-gray-800 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                Volver al Dashboard
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

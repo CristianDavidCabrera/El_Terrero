@@ -34,13 +34,13 @@
             Crear Nuevo Club
         </a>
          <a href="{{ path('dashboard_admin') }}" 
-       class="ml-4 dark:bg-gray-800 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg shadow">
-        Volver al Dashboard
+      class="ml-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+            Volver al Dashboard
     </a>
     {% elseif is_granted('ROLE_USER') %}
 
         <a href="{{ path('dashboard_user') }}" 
-        class="ml-4 dark:bg-gray-800 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg shadow">
+      class="ml-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
             Volver al Dashboard
         </a>
     {% endif %}
