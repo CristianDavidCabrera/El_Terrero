@@ -4,63 +4,7 @@
 
 {% block body %}
 <div class="bg-gray-800 text-white p-4 shadow">
-    <h1 class="text-2xl font-bold text-center my-4 dark:text-white">Lista de Scores</h1>
-</div>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
-    {% for score in scores %}
-        <div class="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 dark:border-gray-700">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Score ID: {{ score.id }}</h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Puntos: <span class="font-medium">{{ score.points }}</span></p>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Es local: <span class="font-medium">{{ score.isLocal ? 'Sí' : 'No' }}</span></p>
-            
-            <div class="mt-4 flex justify-between">
-                <a href="{{ path('app_score_show', {'id': score.id}) }}" 
-                   class="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
-                    Ver detalles
-                </a>
-                <a href="{{ path('app_score_edit', {'id': score.id}) }}" 
-                   class="text-sm font-medium text-yellow-500 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-600">
-                    Editar
-                </a>
-            </div>
-        </div>
-    {% else %}
-        <div class="col-span-full text-center text-gray-500 dark:text-gray-400">
-            <p>No se encontraron registros.</p>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="mt-6 flex justify-center">
-    <a href="{{ path('app_score_new') }}" 
-       class="ml-4 bg-blue-500 text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-900">
-        Crear Nuevo Score
-    </a>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('dashboard_admin') }}" 
-           class="ml-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-            Volver al Dashboard
-        </a>
-    {% elseif is_granted('ROLE_USER') %}
-        <a href="{{ path('dashboard_user') }}" 
-            class="ml-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-            Volver al Dashboard
-        </a>
-    {% endif %}
-</div>
-{% endblock %} 
- 
-
-{# 
-
-{% extends 'base.html.twig' %}
-
-{% block title %}Score index{% endblock %}
-
-{% block body %}
-<div class="bg-gray-800 text-white p-4 shadow">
-    <h1 class="text-2xl font-bold text-center my-4 dark:text-white">Lista de Scores</h1>
+    <h1 class="text-2xl font-bold text-center my-4 dark:text-white">Lista de Marcadores</h1>
 </div>
 
 <div class="overflow-x-auto my-6">
@@ -118,7 +62,7 @@
 <div class="mt-6 flex justify-center">
     <a href="{{ path('app_score_new') }}" 
        class="ml-4 bg-blue-500 text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-900">
-        Crear Nuevo Score
+        Crear Nuevo Marcador
     </a>
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('dashboard_admin') }}" 
@@ -133,4 +77,3 @@
     {% endif %}
 </div>
 {% endblock %}
- #}
