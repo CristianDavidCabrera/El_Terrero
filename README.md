@@ -1,7 +1,7 @@
 ![](https://user-images.githubusercontent.com/970858/63474771-d6734700-c469-11e9-83bb-9429da563909.png)
 
 
-# Project Canary Fight
+# Project El Terrero
 
 ## Introduction
 
@@ -25,6 +25,6 @@
 
 - Design and creation of the database, its tables and relationships.
 
-## Iteration 3 - Create 
+## Iteration 3 - Create controllers, views, and authentication and login system.
 
 ![happy_coding](https://user-images.githubusercontent.com/970858/63899010-c23fc480-c9ea-11e9-84a2-542907e42362.png)
