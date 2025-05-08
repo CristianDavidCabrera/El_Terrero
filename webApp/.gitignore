@@ -29,3 +29,21 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+# IDEs
+/.idea/
+/.vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Composer
+composer.lock
+
+# Symfony profiler
+/var/cache/
+/var/log/
